@@ -1,0 +1,14 @@
+go  # just a package name
+
+package name # assumes you want 'package name', you can pass the -split flag otherwise
+
+# this would be an error, not allowed as a 'bare' character
+😀
+
+# you can quote any line with backticks, to include any charater, including a '#'
+`github.com/user/emoji_package😀#master`  # install from github
+
+# python/node-esque packages work fine as bare words
+requests==2.24.0
+@elm-tooling/elm-language-server
+serve

@@ -1,0 +1,8 @@
+# packages to install
+
+clojure 
+docker
+ elm
+go
+npm
+

@@ -1,0 +1,35 @@
+#!/bin/bash
+# setup the antlr jar for development
+# ./antlr.sh build to generate lexer code
+# any other arguments are forwarded to antlr
+
+THIS_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
+readonly DEV_FOLDER="${THIS_DIR}/development"
+readonly ANTLR_VERSION='antlr-4.8-complete.jar'
+
+command -v java >/dev/null 2>&1 || {
+	echo 'This requires java for development!' >&2
+	exit 1
+}
+
+setup_antlr() {
+	cd "$DEV_FOLDER" || return $?
+	[[ -e "${ANTLR_VERSION}" ]] && return
+	curl -O "https://www.antlr.org/download/${ANTLR_VERSION}"
+}
+
+antlr() {
+	java -jar "${DEV_FOLDER}/${ANTLR_VERSION}" "$@"
+}
+
+build() {
+	antlr -Dlanguage=Go -o ./src/lexer -package 'lexer' ./Spkglist.g4
+}
+
+mkdir -p "$DEV_FOLDER"
+(setup_antlr) || exit $?
+if [[ "$1" == 'build' ]]; then
+	build
+else
+	antlr "$@" || exit $?
+fi
