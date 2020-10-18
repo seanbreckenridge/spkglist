@@ -43,7 +43,6 @@ If none provided, reads from STDIN.
     	use the null character as the delimiter
   -split
     	split on all whitespace, instead of newlines
-
 ```
 
 ### Common Usage

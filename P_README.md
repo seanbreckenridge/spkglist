@@ -36,7 +36,7 @@ go get gitlab.com/seanbreckenridge/spkglist/cmd/spkglist
 perl -E 'print "`"x3, "\n"'
 go build ./cmd/spkglist/
 ./spkglist -help
-perl -E 'print "\n", "`"x3, "\n"'
+perl -E 'print "`"x3, "\n"'
 ```
 
 ### Common Usage
