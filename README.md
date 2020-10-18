@@ -97,7 +97,6 @@ serve
 Output:
 
 ```
-line 6:0 token recognition error at: '😀'
 go
 package name
 github.com/user/emoji_package😀#master

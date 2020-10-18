@@ -84,6 +84,6 @@ Output:
 >>>PMARK
 perl -E 'print "`"x3, "\n"'
 go build ./cmd/spkglist/
-./spkglist ./examples/spec.txt
+./spkglist ./examples/spec.txt 2>/dev/null
 perl -E 'print "\n", "`"x3, "\n"'
 ```
