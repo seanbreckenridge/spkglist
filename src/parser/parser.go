@@ -3,12 +3,12 @@ package parser
 import (
 	"errors"
 	"fmt"
-	"github.com/antlr/antlr4/runtime/Go/antlr"
 	"io"
 	"io/ioutil"
 	"os"
 	"strings"
 
+	"github.com/antlr/antlr4/runtime/Go/antlr"
 	"gitlab.com/seanbreckenridge/spkglist/src/lexer"
 )
 
