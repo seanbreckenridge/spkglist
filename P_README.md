@@ -32,16 +32,11 @@ go get gitlab.com/seanbreckenridge/spkglist/cmd/spkglist
 ```
 
 ```
-Pass one or more files to read from as arguments
-If none provided, reads from STDIN.
-  -delimiter string
-        delimiter to print between results (default "\n")
-  -json
-        Print results as a JSON array
-  -print0
-        use the null character as the delimiter
-  -split
-        split on all whitespace, instead of newlines
+>>>PMARK
+perl -E 'print "`"x3, "\n"'
+go build ./cmd/spkglist/
+./spkglist -help
+perl -E 'print "\n", "`"x3, "\n"'
 ```
 
 ### Common Usage

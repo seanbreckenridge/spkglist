@@ -1,6 +1,6 @@
 ## spkglist
 
-A simple package list parser
+A simple package list parser.
 
 This isn't for any language/tool in particular, its meant to clean up hand written package files for any tool, especially while creating scripts to bootstrap installation processes.
 
@@ -32,16 +32,18 @@ go get gitlab.com/seanbreckenridge/spkglist/cmd/spkglist
 ```
 
 ```
+A simple package list parser
 Pass one or more files to read from as arguments
 If none provided, reads from STDIN.
   -delimiter string
-        delimiter to print between results (default "\n")
+    	delimiter to print between results (default "\n")
   -json
-        Print results as a JSON array
+    	Print results as a JSON array
   -print0
-        use the null character as the delimiter
+    	use the null character as the delimiter
   -split
-        split on all whitespace, instead of newlines
+    	split on all whitespace, instead of newlines
+
 ```
 
 ### Common Usage
