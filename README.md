@@ -105,3 +105,6 @@ requests==2.24.0
 serve
 ```
 
+---
+
+For more examples, you can see my usage in my system bootstrap script [here](https://github.com/seanbreckenridge/dotfiles/blob/44ce8023b0cc517bd014d45b7051e38aa2d7c463/.config/yadm/bootstrap#L119-L202), corresponding package lists [here](https://github.com/seanbreckenridge/dotfiles/tree/8fba977a478b7b3307109e4e72974600a6beed16/.config/yadm/package_lists).
