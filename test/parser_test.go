@@ -44,7 +44,6 @@ something
 	assertSlice(results, expected, t)
 }
 
-
 func TestParserComments(t *testing.T) {
 	results := runParser(`
 # some other comment
@@ -75,4 +74,3 @@ func TestParserQuotedPackage(t *testing.T) {
 	expected := []string{"quoted#master", "unquoted"}
 	assertSlice(results, expected, t)
 }
-
