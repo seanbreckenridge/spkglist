@@ -1,6 +1,6 @@
 #!/bin/bash
 # setup the antlr jar for development
-# ./antlr.sh build to generate lexer code
+# ./antlr build to generate lexer code
 # any other arguments are forwarded to antlr
 
 THIS_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
@@ -13,7 +13,7 @@ command -v java >/dev/null 2>&1 || {
 }
 
 setup_antlr() {
-	cd "$DEV_FOLDER" || return $?
+	cd "${DEV_FOLDER}" || return $?
 	[[ -e "${ANTLR_VERSION}" ]] && return
 	curl -O "https://www.antlr.org/download/${ANTLR_VERSION}"
 }
@@ -23,13 +23,14 @@ antlr() {
 }
 
 build() {
-	antlr -Dlanguage=Go -o ./src/lexer -package 'lexer' ./Spkglist.g4
+	antlr -Dlanguage=Go -o ./src/lexer -package 'lexer' ./Spkglist.g4 "$@"
 }
 
-mkdir -p "$DEV_FOLDER"
+mkdir -p "${DEV_FOLDER}"
 (setup_antlr) || exit $?
 if [[ "$1" == 'build' ]]; then
-	build
+	shift
+	build "$@"
 else
 	antlr "$@" || exit $?
 fi
