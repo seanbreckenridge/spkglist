@@ -9,7 +9,7 @@ import (
 	"os"
 	"strings"
 
-	"gitlab.com/seanbreckenridge/spkglist/src/parser"
+	"github.com/seanbreckenridge/spkglist/src/parser"
 )
 
 type Packages []string

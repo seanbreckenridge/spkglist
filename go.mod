@@ -1,4 +1,4 @@
-module gitlab.com/seanbreckenridge/spkglist
+module github.com/seanbreckenridge/spkglist
 
 go 1.15
 

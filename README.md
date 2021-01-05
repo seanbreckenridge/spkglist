@@ -28,7 +28,7 @@ python3
 ### Install
 
 ```
-go get gitlab.com/seanbreckenridge/spkglist/cmd/spkglist
+go get github.com/seanbreckenridge/spkglist/cmd/spkglist
 ```
 
 ```
