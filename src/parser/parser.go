@@ -49,5 +49,6 @@ func ParseFile(filepath string) ([]string, error) {
 	if err != nil {
 		return nil, errors.New(fmt.Sprintf("Could not open file at '%s'", filepath))
 	}
+	defer f.Close()
 	return ParseBuffer(f)
 }
