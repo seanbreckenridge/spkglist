@@ -56,16 +56,16 @@ Some `bash` that might be used to prompt the user to install packages using this
 # https://github.com/koalaman/shellcheck/wiki/SC2013
 # http://mywiki.wooledge.org/DontReadLinesWithFor
 { spkglist packages.txt | while IFS= read -r pkg; do
-		# prompt user
-		printf "install '%s' [Y/n]" "$pkg"
-    read -u 3 -n 1
-		if [[ $REPLY =~ [Nn] ]]; then
-			# skip to next package if user answered no
-			printf '\n'
-			continue
-		else
-			printf "\ninstalling '%s'\n" "$pkg"
-		fi
+	# prompt user
+	printf "install '%s' [Y/n]" "$pkg"
+	read -u 3 -n 1
+	if [[ $REPLY =~ [Nn] ]]; then
+		# skip to next package if user answered no
+		printf '\n'
+		continue
+	else
+		printf "\ninstalling '%s'\n" "$pkg"
+	fi
 done; } 3<&0
 ```
 
