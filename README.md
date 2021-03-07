@@ -38,9 +38,11 @@ If none provided, reads from STDIN.
   -delimiter string
     	delimiter to print between results (default "\n")
   -json
-    	Print results as a JSON array
+    	print results as a JSON array
   -print0
     	use the null character as the delimiter
+  -skip-last-delim
+    	dont print the delimiter after the last item
   -split
     	split on all whitespace, instead of newlines
 ```

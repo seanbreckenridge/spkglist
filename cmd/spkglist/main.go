@@ -32,8 +32,11 @@ If none provided, reads from STDIN.`)
 		flag.PrintDefaults()
 	}
 	split := flag.Bool("split", false, "split on all whitespace, instead of newlines")
-	printJson := flag.Bool("json", false, "Print results as a JSON array")
+	printJson := flag.Bool("json", false, "print results as a JSON array")
 	delimiter := flag.String("delimiter", "\n", "delimiter to print between results")
+	// this is false by default because including a new line as the last delimiter
+	// works better for processing lines in the shell
+	skiplast := flag.Bool("skip-last-delim", false, "dont print the delimiter after the last item")
 	null_char := flag.Bool("print0", false, "use the null character as the delimiter")
 	flag.Parse()
 	positionals := flag.Args()
@@ -92,6 +95,10 @@ If none provided, reads from STDIN.`)
 			fmt.Print(p)
 			if i != len(packages)-1 {
 				fmt.Print(delim)
+			} else {
+				if !*skiplast {
+					fmt.Print(delim)
+				}
 			}
 		}
 	}
