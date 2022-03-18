@@ -3,8 +3,8 @@ lexer grammar Spkglist;
 WS : [ \t]+ -> skip ; // skip whitespace
 NL : ('\r'? '\n')+ ; // newline
 
-// a '#' or '//', followed by any non-newline character
-COMMENT : ('#') (~[\n])* ;
+// a '#' followed by any non-newline character
+COMMENT : '#' ~[\r\n]* -> skip ;
 
 QUOTED_PACKAGE: BACKTICK (~[\u0060])* BACKTICK ;
 BARE_PACKAGE : (PKG_BARE ' '*)+ ;
