@@ -64,7 +64,6 @@ done < <(spkglist /path/to/package/list)
 Or, you can query the package manager itself
 
 ```bash
-#
 # have to use for loop, while loop times out instantly
 # when trying to prompt
 #
