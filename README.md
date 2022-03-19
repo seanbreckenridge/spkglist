@@ -79,7 +79,7 @@ Or, you can query the package manager itself
 # https://stackoverflow.com/q/6883363/9348376
 # https://github.com/koalaman/shellcheck/wiki/SC2013
 # http://mywiki.wooledge.org/DontReadLinesWithFor
-for lib in $(spkglist /path/to/package/list"); do
+for lib in $(spkglist /path/to/package/list); do
 	if [[ ! $(yay -Q "${lib}" 2>/dev/null) ]]; then # if package isn't installed
 		yay -S "${lib}"
 	fi
