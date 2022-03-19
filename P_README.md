@@ -47,27 +47,39 @@ To pass the parsed information to a command, one could do:
 spkglist -print0 packages.txt | xargs -0 sudo apt install
 ```
 
-Some `bash` that might be used to prompt the user to install packages using this:
+Some `bash` that might be used to check if packages are installed, else install them:
 
 ```bash
-#!/bin/bash
+# create a variable list of installed packages
+CARGO_INSTALLED_PACKAGES="$(cargo install --list | sed -E -e '/^\s+/d; s|\s.*||')"
+while read -r cargopkg; do
+	# if we cant find that package in the installed packages
+	if ! grep -q "^${cargopkg}$" <<<"${CARGO_INSTALLED_PACKAGES}"; then
+		printf "Installing %s\n" "${cargopkg}"
+		cargo install "${cargopkg}"
+	fi
+done < <(spkglist /path/to/package/list)
+```
+
+Or, you can query the package manager itself
+
+```bash
+#
+# have to use for loop, while loop times out instantly
+# when trying to prompt
+#
 # for complications with prompting while looping, see
 # https://stackoverflow.com/q/6883363/9348376
 # https://github.com/koalaman/shellcheck/wiki/SC2013
 # http://mywiki.wooledge.org/DontReadLinesWithFor
-{ spkglist packages.txt | while IFS= read -r pkg; do
-	# prompt user
-	printf "install '%s' [Y/n]" "$pkg"
-	read -u 3 -n 1
-	if [[ $REPLY =~ [Nn] ]]; then
-		# skip to next package if user answered no
-		printf '\n'
-		continue
-	else
-		printf "\ninstalling '%s'\n" "$pkg"
+for lib in $(spkglist /path/to/package/list"); do
+	if [[ ! $(yay -Q "${lib}" 2>/dev/null) ]]; then # if package isn't installed
+		yay -S "${lib}"
 	fi
-done; } 3<&0
+done
 ```
+
+For more examples, you can see my usage in my system bootstrap script [here](https://github.com/seanbreckenridge/dotfiles/blob/7c570944b244986d2837ffa935ff8efd7e7f4543/.config/yadm/computer_bootstrap#L37-L103), corresponding package lists [here](https://github.com/seanbreckenridge/dotfiles/tree/baf92d5fed00b87167b509f22d439c5e2075f63b/.config/yadm/package_lists).
 
 ## Specification
 
@@ -87,7 +99,3 @@ go build ./cmd/spkglist/
 ./spkglist -skip-last-delim ./examples/spec.txt 2>/dev/null
 perl -E 'print "\n", "`"x3, "\n"'
 ```
-
----
-
-For more examples, you can see my usage in my system bootstrap script [here](https://github.com/seanbreckenridge/dotfiles/blob/44ce8023b0cc517bd014d45b7051e38aa2d7c463/.config/yadm/bootstrap#L119-L202), corresponding package lists [here](https://github.com/seanbreckenridge/dotfiles/tree/8fba977a478b7b3307109e4e72974600a6beed16/.config/yadm/package_lists).
