@@ -53,7 +53,7 @@ Some `bash` that might be used to check if packages are installed, else install 
 # create a variable list of installed packages
 CARGO_INSTALLED_PACKAGES="$(cargo install --list | sed -E -e '/^\s+/d; s|\s.*||')"
 while read -r cargopkg; do
-	# if we cant find that package in the installed packages
+	# if we can't find that package in the installed packages
 	if ! grep -q "^${cargopkg}$" <<<"${CARGO_INSTALLED_PACKAGES}"; then
 		printf "Installing %s\n" "${cargopkg}"
 		cargo install "${cargopkg}"

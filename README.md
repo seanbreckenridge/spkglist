@@ -61,7 +61,7 @@ Some `bash` that might be used to check if packages are installed, else install 
 # create a variable list of installed packages
 CARGO_INSTALLED_PACKAGES="$(cargo install --list | sed -E -e '/^\s+/d; s|\s.*||')"
 while read -r cargopkg; do
-	# if we cant find that package in the installed packages
+	# if we can't find that package in the installed packages
 	if ! grep -q "^${cargopkg}$" <<<"${CARGO_INSTALLED_PACKAGES}"; then
 		printf "Installing %s\n" "${cargopkg}"
 		cargo install "${cargopkg}"
@@ -98,7 +98,7 @@ package name # assumes you want 'package name', you can pass the -split flag oth
 # this would be an error, not allowed as a 'bare' character
 😀
 
-# you can quote any line with backticks, to include any charater, including a '#'
+# you can quote any line with backticks, to include any character, including a '#'
 `github.com/user/emoji_package😀#master`  # install from github
 
 # python/node-esque packages work fine as bare words
